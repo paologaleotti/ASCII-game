@@ -1,2 +1,2 @@
 # ASCII_game
-just a simple platform game for a school project
+Top-down roguelike ASCII game written in c++ using ncurses.
