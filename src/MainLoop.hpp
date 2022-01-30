@@ -1,4 +1,5 @@
 class MainLoop {
 public:
-    int main();
+    void init();
+    void loop();
 };
