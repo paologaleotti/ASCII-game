@@ -1,4 +1,4 @@
-#include "Graphics.hpp"
+#include "MainLoop.hpp"
 #include <ncurses.h>
 
 using namespace std;
@@ -7,8 +7,8 @@ int main() {
     //ciao a tutti :)
     initscr();
 
-    MainWindow mw;
-    mw.init();
+    MainLoop ml;
+    ml.init();
 
     getch();
 

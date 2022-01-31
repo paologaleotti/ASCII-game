@@ -1,7 +1,7 @@
-#include "Graphics.hpp"
+#include "MainLoop.hpp"
 #include <ncurses.h>
 
-void MainWindow::init() {
+void MainLoop::init() {
     WINDOW *win = newwin(10, 20, 5, 5);
     refresh();
 
@@ -17,6 +17,6 @@ void MainWindow::init() {
     wrefresh(win);
 }
 
-void MainWindow::loop() {
+void MainLoop::loop() {
 
 }
