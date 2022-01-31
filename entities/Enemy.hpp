@@ -1,4 +1,4 @@
 
-class enemy{
+class Enemy{
 // classe nemico molto kattivo
 };
