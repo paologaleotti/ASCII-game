@@ -1,22 +1,22 @@
 
 class Entity{
     public:
-        int HP; // vita
+        int hp; // vita
         // possibile int DEF, difesa che va sottratta ai danni ricevuti
-        int DMG; // danno
-        int mvspeed; // n di caratteri per cui si muove ad ogni tic
+        int dmg; // danno
+        int mvSpeed; // n di caratteri per cui si muove ad ogni tic
         bool isDead; // per segnare se è vivo o morto
 
     private:
-        int xCor, yCor;  // coordinate su matrice
+        int x, y;  // coordinate su matrice
 
     public:
 
-    void dmgCalc(int incDMG); //incoming damage calc
-    void mvleft();
-    void mvright();
-    void mvup();
-    void mvdown();
+        void dmg_calc(int incDmg); //incoming damage calc
+        void mv_left();
+        void mv_right();
+        void mv_up();
+        void mv_down();
 
 
 };

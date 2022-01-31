@@ -1,25 +1,25 @@
 #include "Entity.hpp"
 
-    void Entity::dmgCalc(int incDMG){ //incoming damage calc
+    void Entity::dmg_calc(int incDmg){ //incoming damage calc
         // se si implementa la difesa si fanno qui i calcoli 
-        HP = HP - incDMG;
+        hp = hp - incDmg;
 
-        if(HP >= 0) isDead = true;
+        if(hp >= 0) isDead = true;
     } 
     
     
-    void Entity::mvleft(){
+    void Entity::mv_left(){
         //TBD
     }
 
-    void Entity::mvright(){
+    void Entity::mv_right(){
         //TBD
     }
 
-    void Entity::mvup(){
+    void Entity::mv_up(){
         //TBD
     }
 
-    void Entity::mvdown(){
+    void Entity::mv_down(){
         //TBD
     }
