@@ -1,4 +1,4 @@
-class MainLoop {
+class MainWindow {
 public:
     void init();
     void loop();
