@@ -4,7 +4,6 @@
 using namespace std;
 
 int main() {
-    //ciao a tutti :)
     initscr();
 
     MainWindow mw;
