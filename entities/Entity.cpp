@@ -2,9 +2,9 @@
 
     void Entity::dmg_calc(int incDmg){ //incoming damage calc
         // se si implementa la difesa si fanno qui i calcoli 
-        hp = hp - incDmg;
+        this->hp = this->hp - incDmg;
 
-        if(hp >= 0) isDead = true;
+        if(this->hp >= 0) this->isDead = true;
     } 
     
     
