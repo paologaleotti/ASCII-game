@@ -4,7 +4,7 @@
         // se si implementa la difesa si fanno qui i calcoli 
         HP = HP - incDMG;
 
-        if(HP >= 0) KO = true;
+        if(HP >= 0) isDead = true;
     } 
     
     

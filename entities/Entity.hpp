@@ -5,7 +5,7 @@ class Entity{
         // possibile int DEF, difesa che va sottratta ai danni ricevuti
         int DMG; // danno
         int mvspeed; // n di caratteri per cui si muove ad ogni tic
-        bool KO; // per segnare se è vivo o morto
+        bool isDead; // per segnare se è vivo o morto
 
     private:
         int xCor, yCor;  // coordinate su matrice
