@@ -1,4 +1,5 @@
+#include "Entity.hpp"
+class Enemy :public Entity{
+    public:
 
-class Enemy{
-// classe nemico molto kattivo
 };
