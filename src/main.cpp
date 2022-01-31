@@ -13,4 +13,3 @@ int main() {
 
     endwin();
 }
-// sono un commento
