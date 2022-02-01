@@ -1,22 +1,28 @@
 #include "Graphics.hpp"
 #include <ncurses.h>
 
-void MainWindow::init() {
-    WINDOW *win = newwin(10, 20, 5, 5);
-    refresh();
-
-    /*
-    box(win, 0, 0);
-    wrefresh(win);
-    */
-
-    int c = (int)'+';
-    
-    wborder(win, 0, 0, 0, 0, c, c, c, c);
-    mvwprintw(win, 0, 4, "aaaa");
-    wrefresh(win);
+MainWindow::MainWindow(char wallch, char playerch, char enemych){
+	this->wallCh = wallch;
+	this->playerCh = playerch;
+	this->enemyCh = enemych;
 }
 
-void MainWindow::loop() {
+char MainWindow::matrixTranslate(int toConvert){
+	switch (toConvert){
+		case 0: return ' ';
+		case 1: return this->playerCh;
+		case 2: return this->wallCh;
+		case 3: return this->enemyCh;
+		default: return ' ';
+	}
+}
 
+void MainWindow::printRoom(int room[][10]) {
+	clear();	// clear screen
+	for(int i = 0; i < 10; i++) {
+		for(int j = 0; j < 10; j++) {
+			printw("%c", matrixTranslate(room[i][j]));
+		}
+		printw("\n");
+	}
 }
