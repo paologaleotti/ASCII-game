@@ -19,7 +19,6 @@ char MainWindow::matrixTranslate(int toConvert){
 
 void MainWindow::printRoom(int room[][10]) {
 	clear();	// clear screen
-
 	for(int i = 0; i < 10; i++) {
 		for(int j = 0; j < 10; j++) {
 			printw("%c", matrixTranslate(room[i][j]));
