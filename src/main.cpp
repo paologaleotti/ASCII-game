@@ -42,8 +42,6 @@ int main() {
 	MainWindow mw('#', '@', '&');
 	Room r(temp);
 	Player p(&r, 10, 3, false, 3, 1);
-	
-	//r.currentRoom[p.y][p.x] = 1;
 
 	// MAIN GAME LOOP
 	while(true){
