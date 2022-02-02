@@ -49,7 +49,6 @@ void check_key(Player *player, Room *room, char c){
 }
 
 int main() {
-	
 	initscr();
 	MainWindow mw('#', '@', '&');
 	Room r(temp);
@@ -60,13 +59,12 @@ int main() {
 	while(true){
 		mw.print_room(&r, &p);
 
+		c = getch();
 		if(p.check_door(&r, c)){
 			r.swap_matrix(temp2);
 			p.x = 1;
 			p.y = 2;
 		}
-		
-		c = getch();
 		check_key(&p, &r, c);
 		p.render(&r);
 	}

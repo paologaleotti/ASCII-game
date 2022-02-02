@@ -12,7 +12,7 @@ char MainWindow::matrix_translate(int toConvert){
 		case 1: return this->playerCh;
 		case 2: return this->wallCh;
 		case 3: return this->enemyCh;
-		case 4: return ' ';
+		case 4: return '|';
 		default: return ' ';
 	}
 }
