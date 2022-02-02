@@ -1,4 +1,5 @@
 #include "Player.hpp"
+
 Player::Player(Room *room, int hp, int dmg, bool isDead, int x, int y, int score){
 	this->hp = hp;
 	this->dmg = dmg;
@@ -8,26 +9,35 @@ Player::Player(Room *room, int hp, int dmg, bool isDead, int x, int y, int score
 	room->currentRoom[this->y][this->x] = 1;	//spawna il player
 }
 
+void Player::render(Room *room, bool spawn){
+	room->currentRoom[this->y][this->x] = spawn;
+}
+
+bool Player::check_door(Room *room){
+	if(room->currentRoom[this->y][this->x] == 4) return true;
+	else return false;
+}
+
 void Player::mv_left(Room *room){
-	room->currentRoom[this->y][this->x] = 0;
+	Player::render(room, 0);
 	this->x--;
-	room->currentRoom[this->y][this->x] = 1;
+	Player::render(room);
 }
 
 void Player::mv_right(Room *room){
-	room->currentRoom[this->y][this->x] = 0;
+	Player::render(room, 0);
 	this->x++;
-	room->currentRoom[this->y][this->x] = 1;
+	Player::render(room);
 }
 
 void Player::mv_up(Room *room){
-	room->currentRoom[this->y][this->x] = 0;
+	Player::render(room, 0);
 	this->y--;
-	room->currentRoom[this->y][this->x] = 1;
+	Player::render(room);
 }
 
 void Player::mv_down(Room *room){
-	room->currentRoom[this->y][this->x] = 0;
+	Player::render(room, 0);
 	this->y++;
-	room->currentRoom[this->y][this->x] = 1;
+	Player::render(room);
 }

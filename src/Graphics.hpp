@@ -1,13 +1,23 @@
+#include "../entities/Player.hpp"
+#include <ncurses.h>
+
 class MainWindow {
 private:
+	// caratteri per la stampa della matrice
 	char wallCh;
 	char playerCh;
 	char enemyCh;
-
-	char matrixTranslate(int toConvert);
+	
+	// traduce int nel giusto carattere
+	char matrix_translate(int toConvert);
 
 public:
-	int currentRoom[10][10];
+	// costruttore
 	MainWindow(char wallch, char playerch, char enemych);
-    void printRoom(int room[][10]);
+	
+	// stampa la matrice
+    void print_room(Room *room, Player *player);
+	
+	// scambia la stanza con un'altra data come parametro
+	void swap_room(Room *room);
 };
