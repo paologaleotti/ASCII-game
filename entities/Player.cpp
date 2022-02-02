@@ -19,25 +19,25 @@ bool Player::check_door(Room *room){
 }
 
 void Player::mv_left(Room *room){
-	Player::render(room);
+	Player::render(room, 0);
 	this->x--;
-	Player::render(room, 1);
+	Player::render(room);
 }
 
 void Player::mv_right(Room *room){
-	Player::render(room);
+	Player::render(room, 0);
 	this->x++;
-	Player::render(room, 1);
+	Player::render(room);
 }
 
 void Player::mv_up(Room *room){
-	Player::render(room);
+	Player::render(room, 0);
 	this->y--;
-	Player::render(room, 1);
+	Player::render(room);
 }
 
 void Player::mv_down(Room *room){
-	Player::render(room);
+	Player::render(room, 0);
 	this->y++;
-	Player::render(room, 1);
+	Player::render(room);
 }

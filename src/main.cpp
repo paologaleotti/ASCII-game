@@ -65,7 +65,7 @@ int main() {
 		//// NON FUNZIONANTE /////
 		int c = getch();
 		check_key(&p, &r, c);
-		p.render(&r, 1);
+		p.render(&r);
 	}
 	endwin();
     return 0;
