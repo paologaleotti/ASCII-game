@@ -10,7 +10,6 @@ private:
 	char matrix_translate(int toConvert);
 
 public:
-	int currentRoom[10][10];
 	MainWindow(char wallch, char playerch, char enemych);
     void print_room(Room *room, Player *player);
 	void swap_room(Room *room);
