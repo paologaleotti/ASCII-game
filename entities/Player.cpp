@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include <ncurses.h>
 
 Player::Player(Room *room, int hp, int dmg, bool isDead, int x, int y, int score){
 	this->hp = hp;
@@ -13,9 +14,23 @@ void Player::render(Room *room, bool spawn){
 	room->currentRoom[this->y][this->x] = spawn;
 }
 
-bool Player::check_door(Room *room){
-	if(room->currentRoom[this->y][this->x] == 4) return true;
-	else return false;
+bool Player::check_door(Room *room, int dir){
+	switch (dir){
+		case 'a':
+			if (room->currentRoom[this->y][this->x-1] == 4) return true;
+			break;
+		case 'd':
+			if (room->currentRoom[this->y][this->x+1] == 4) return true;
+			break;
+		case 'w':
+			if (room->currentRoom[this->y+1][this->x] == 4) return true;
+			break;
+		case 's':
+			if (room->currentRoom[this->y-1][this->x] == 4) return true;
+			break;
+		default: break;
+	}
+	return false;
 }
 
 void Player::mv_left(Room *room){
