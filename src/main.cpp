@@ -1,5 +1,6 @@
 #include "Graphics.hpp"
 #include "../entities/Player.hpp"
+#include "../map/MapGen.hpp"
 #include <ncurses.h>
 
 using namespace std;
@@ -40,7 +41,8 @@ int main() {
 	
 	initscr();
 	MainWindow mw('#', '@', '&');
-	Room r(temp);
+	MapGen mg; mg.gen_map();
+	Room r(mg.map);
 	Player p(&r, 10, 3, false, 3, 1);
 
 	// MAIN GAME LOOP

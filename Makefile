@@ -1,4 +1,4 @@
-OBJS = main.o Graphics.o Entity.o Player.o Room.o
+OBJS = main.o Graphics.o Entity.o Player.o Room.o MapGen.o
 OUT = main.out
 
 all: $(OBJS)
@@ -18,6 +18,9 @@ Player.o: entities/Player.cpp entities/Player.hpp
 
 Room.o: room/Room.cpp room/Room.hpp
 	g++ -c room/Room.cpp -lncurses
+
+MapGen.o: map/MapGen.cpp map/MapGen.hpp
+	g++ -c map/MapGen.cpp -lncurses
 
 clean:
 	rm -f $(OBJS) $(OUT)
