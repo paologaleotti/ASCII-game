@@ -1,13 +1,17 @@
+#include "../entities/Player.hpp"
+#include <ncurses.h>
+
 class MainWindow {
 private:
 	char wallCh;
 	char playerCh;
 	char enemyCh;
 
-	char matrixTranslate(int toConvert);
+	char matrix_translate(int toConvert);
 
 public:
 	int currentRoom[10][10];
 	MainWindow(char wallch, char playerch, char enemych);
-    void printRoom(int room[][10]);
+    void print_room(Room *room, Player *player);
+	void swap_room(Room *room);
 };

@@ -1,5 +1,4 @@
 #include "Graphics.hpp"
-#include "../entities/Player.hpp"
 #include <ncurses.h>
 
 using namespace std;
@@ -9,6 +8,19 @@ int temp[10][10]= {
 		2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
 		2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
 		2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+		2, 0, 0, 0, 0, 0, 0, 0, 0, 4,
+		2, 0, 0, 0, 0, 0, 0, 3, 0, 2,
+		2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+		2, 0, 0, 0, 3, 0, 0, 0, 0, 2,
+		2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+		2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+};
+
+int temp2[10][10]= {
+		2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+		2, 0, 0, 2, 0, 0, 0, 0, 0, 2,
+		2, 0, 0, 2, 0, 0, 0, 0, 0, 2,
+		2, 0, 0, 2, 0, 0, 0, 0, 0, 2,
 		2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
 		2, 0, 0, 0, 0, 0, 0, 3, 0, 2,
 		2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -45,9 +57,15 @@ int main() {
 
 	// MAIN GAME LOOP
 	while(true){
-		mw.printRoom(r.currentRoom);
+		mw.print_room(&r, &p);
+		//////////////////////////
+		if(p.check_door(&r)){
+			r.swap_matrix(temp2);
+		}
+		//// NON FUNZIONANTE /////
 		int c = getch();
 		check_key(&p, &r, c);
+		p.render(&r, 1);
 	}
 	endwin();
     return 0;
