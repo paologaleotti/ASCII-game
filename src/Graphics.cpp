@@ -22,6 +22,7 @@ void MainWindow::print_room(Room *room, Player *player){
 	for(int i = 0; i < 10; i++) {
 		for(int j = 0; j < 10; j++) {
 			printw("%c", matrix_translate(room->currentRoom[i][j]));
+			printw("%c", ' ');
 		}
 		printw("\n");
 	}
