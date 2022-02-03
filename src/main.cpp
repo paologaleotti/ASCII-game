@@ -1,5 +1,4 @@
 #include "Graphics.hpp"
-#include "../entities/Player.hpp"
 #include "../map/MapGen.hpp"
 #include <ncurses.h>
 
