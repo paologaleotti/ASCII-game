@@ -19,7 +19,7 @@ int temp[10][10]= {
 int temp2[10][10]= {
 		2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
 		2, 0, 0, 2, 0, 0, 0, 0, 0, 2,
-		4, 0, 0, 2, 0, 0, 0, 0, 0, 2,
+		5, 0, 0, 2, 0, 0, 0, 0, 0, 2,
 		2, 0, 0, 2, 0, 0, 0, 0, 0, 2,
 		2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
 		2, 0, 0, 0, 0, 0, 0, 3, 0, 4,
@@ -50,6 +50,8 @@ void check_key(Player *player, Room *room, char c){
 
 int main() {
 	initscr();
+	start_color();
+
 	MainWindow mw('#', '@', '&');
 	Room r(temp);
 	Player p(&r, 10, 3, false, 3, 1);
