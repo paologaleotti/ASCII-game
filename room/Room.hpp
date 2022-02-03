@@ -1,7 +1,7 @@
 class Room{
 	public:
-	int currentRoom[10][10];
+	int currentRoom[20][20];
 
-	Room(int matrix[10][10]);
-	void swap_matrix(int matrix[10][10]);
+	Room(int matrix[20][20]);
+	void swap_matrix(int matrix[20][20]);
 };

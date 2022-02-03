@@ -27,8 +27,8 @@ char MainWindow::matrix_translate(int toConvert){
 
 void MainWindow::print_room(Room *room, Player *player){
 	clear();	// clear screen
-	for(int i = 0; i < 10; i++) {
-		for(int j = 0; j < 10; j++) {
+	for(int i = 0; i < 20; i++) {
+		for(int j = 0; j < 20; j++) {
 			attron(COLOR_PAIR(room->currentRoom[i][j]));
 			printw("%c", matrix_translate(room->currentRoom[i][j]));
 			printw("%c", ' ');
