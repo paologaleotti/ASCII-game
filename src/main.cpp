@@ -21,13 +21,13 @@ int temp[10][10]= {
 int temp2[10][10]= {
 		2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
 		2, 0, 0, 2, 0, 0, 0, 0, 0, 2,
+		5, 0, 0, 2, 0, 0, 0, 0, 0, 2,
 		2, 0, 0, 2, 0, 0, 0, 0, 0, 2,
-		2, 0, 0, 2, 0, 0, 0, 0, 0, 2,
 		2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-		2, 0, 0, 0, 0, 0, 0, 3, 0, 2,
-		2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-		2, 0, 0, 0, 3, 0, 0, 0, 0, 2,
-		2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+		2, 0, 0, 0, 0, 0, 0, 3, 0, 4,
+		2, 0, 3, 0, 0, 0, 2, 0, 0, 2,
+		2, 0, 0, 0, 3, 0, 2, 0, 0, 2,
+		2, 0, 0, 0, 0, 0, 2, 0, 0, 2,
 		2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
 };
 
@@ -51,22 +51,24 @@ void check_key(Player *player, Room *room, char c){
 }
 
 int main() {
-	
 	initscr();
+
 	MainWindow mw('#', '@', '&');
 	MapGen mg; mg.gen_map();
 	Room r(mg.map);
 	Player p(&r, 10, 3, false, 3, 1);
+	int c = 0;
 
 	// MAIN GAME LOOP
 	while(true){
 		mw.print_room(&r, &p);
-		//////////////////////////
-		if(p.check_door(&r)){
+
+		c = getch();
+		if(p.check_door(&r, c)){
 			r.swap_matrix(temp2);
+			p.x = 1;
+			p.y = 2;
 		}
-		//// NON FUNZIONANTE /////
-		int c = getch();
 		check_key(&p, &r, c);
 		p.render(&r);
 	}
