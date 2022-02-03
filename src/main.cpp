@@ -50,7 +50,6 @@ void check_key(Player *player, Room *room, char c){
 
 int main() {
 	initscr();
-	start_color();
 
 	MainWindow mw('#', '@', '&');
 	Room r(temp);
