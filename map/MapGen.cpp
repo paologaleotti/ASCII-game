@@ -13,7 +13,6 @@ void MapGen::gen_map() {
         }
     }
 
-    srand(time(NULL));
     m = rand()%MapGen::n_sect;
 
     for (int y = 0; y < 10; y++) {
@@ -23,7 +22,6 @@ void MapGen::gen_map() {
         }
     }
 
-    srand(time(NULL));
     m = rand()%MapGen::n_sect;
 
     for (int y = 0; y < 10; y++) {
@@ -33,7 +31,6 @@ void MapGen::gen_map() {
         }
     }
 
-    srand(time(NULL));
     m = rand()%MapGen::n_sect;
 
     for (int y = 0; y < 10; y++) {
