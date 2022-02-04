@@ -22,5 +22,8 @@ Room.o: room/Room.cpp room/Room.hpp
 MapGen.o: map/MapGen.cpp map/MapGen.hpp
 	g++ -c map/MapGen.cpp -lncurses
 
+Memory.o: map/Memory.cpp map/Memory.hpp
+	g++ -c map/Memory.cpp -lncurses
+
 clean:
 	rm -f $(OBJS) $(OUT)

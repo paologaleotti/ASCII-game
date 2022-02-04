@@ -14,21 +14,28 @@ void Player::render(Room *room, bool spawn){
 	room->currentRoom[this->y][this->x] = spawn;
 }
 
-bool Player::check_door(Room *room, int dir){
+int Player::check_door(Room *room, int dir){
+	int toCheck = 0;
 	switch (dir){
 		case 'a':
-			if (room->currentRoom[this->y][this->x-1] == 4) return true;
+			toCheck = room->currentRoom[this->y][this->x-1];
+			if (toCheck == 4 || toCheck == 5) return toCheck;
 			break;
 		case 'd':
-			if (room->currentRoom[this->y][this->x+1] == 4) return true;
+			toCheck = room->currentRoom[this->y][this->x+1];
+			if (toCheck == 4 || toCheck == 5) return toCheck;
 			break;
 		case 'w':
-			if (room->currentRoom[this->y+1][this->x] == 4) return true;
+			toCheck = room->currentRoom[this->y-1][this->x];
+			if (toCheck == 4 || toCheck == 5) return toCheck;
 			break;
 		case 's':
-			if (room->currentRoom[this->y-1][this->x] == 4) return true;
+			toCheck = room->currentRoom[this->y-1][this->x];
+			if (toCheck == 4 || toCheck == 5) return toCheck;
 			break;
-		default: break;
+		default:
+			toCheck = 0; 
+			break;
 	}
 	return false;
 }

@@ -27,7 +27,7 @@ int main() {
 	initscr();
 
 	MainWindow mw('#', '@', '&');
-	MapGen mg; 
+	MapGen mg;
 	mg.gen_map();
 	Room r(mg.map);
 	Player p(&r, 10, 3, false, 2, 2);
@@ -38,12 +38,23 @@ int main() {
 		mw.print_room(&r, &p);
 
 		c = getch();
-		if(p.check_door(&r, c)){
+
+		// PORTA PER ANDARE AVANTI
+		if(p.check_door(&r, c) == 4){
+			mg.gen_map();
+			r.swap_matrix(mg.map);
+			p.x = 1;
+			p.y = 2;
+		} 
+		// PORTA PER TORNARE INDIETRO
+		if(p.check_door(&r, c) == 5){
 			mg.gen_map();
 			r.swap_matrix(mg.map);
 			p.x = 1;
 			p.y = 2;
 		}
+
+		// controllo il tasto premuto
 		check_key(&p, &r, c);
 		p.render(&r);
 	}
