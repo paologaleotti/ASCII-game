@@ -12,5 +12,5 @@ class Player : public Entity{
     void mv_up(Room *room);
     void mv_down(Room *room);
 	void pickup_artifact(Room *room);
-	bool check_door(Room *room, int dir);
+	int check_door(Room *room, int dir);
 };
