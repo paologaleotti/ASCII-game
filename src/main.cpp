@@ -44,7 +44,7 @@ int main() {
 	// MAIN GAME LOOP
 	while(true){
 		p.render(&activeRoom);
-		mw.print_room(&activeRoom, &p);
+		mw.print_room(&activeRoom, &p, cache.active->level_id);
 		c = getch();
 
 		// PORTA PER ANDARE AVANTI
