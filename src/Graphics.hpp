@@ -16,7 +16,7 @@ public:
 	MainWindow(char wallch, char playerch, char enemych);
 	
 	// stampa la matrice
-    void print_room(Room *room, Player *player);
+    void print_room(Room *room, Player *player, int level_id);
 	
 	// scambia la stanza con un'altra data come parametro
 	void swap_room(Room *room);
