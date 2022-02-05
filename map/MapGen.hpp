@@ -14,7 +14,7 @@
 */
 class MapGen {
     private:
-        int n_sect = 2;
+        int n_sect = 6;
         int tl_lib[6][10][10] = {
             {   //lab_1
                 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
