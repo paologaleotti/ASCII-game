@@ -1,4 +1,4 @@
-OBJS = main.o Graphics.o Entity.o Player.o Room.o MapGen.o
+OBJS = main.o Graphics.o Entity.o Player.o Room.o MapGen.o Memory.o
 OUT = main.out
 
 all: $(OBJS)

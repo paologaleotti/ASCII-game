@@ -1,7 +1,13 @@
 #include "Memory.hpp"
+#include <ncurses.h>
 
-void Memory::push_map(p_map_mem *head, int mapToPush[20][20]){
-	p_map_mem current = *head;
+Memory::Memory(){
+	this->head = new map_mem;
+	this->active = this->head;
+}
+
+void Memory::push_map(int mapToPush[20][20]){
+	p_map_mem last = this->active;
 	p_map_mem new_map = new map_mem;
 
 	for(int i=0; i<20; i++){
@@ -9,17 +15,25 @@ void Memory::push_map(p_map_mem *head, int mapToPush[20][20]){
 			new_map->map[i][j] = mapToPush[i][j];
 		}
 	}
+	new_map->next = nullptr;
 
-	if(*head == nullptr){
-		*head = new_map;
+	if(this->head == nullptr){
 		new_map->prec = nullptr;
-		new_map->next = nullptr;
+		this->head = new_map;
 	}else{
-		while(current != nullptr){
-			current = current->next;
+		while(last->next != nullptr){
+			last = last->next;
 		}
-		new_map->prec = current->prec;
-		new_map->next = nullptr;
-		current = new_map;
+		last->next = new_map;
+		new_map->prec = last;
+	}
+}
+
+void Memory::modify_node(p_map_mem *act, int mapToPush[20][20]){
+	p_map_mem temp = *act;
+	for(int i=0; i<20; i++){
+		for(int j=0; j<20; j++){
+			temp->map[i][j] = mapToPush[i][j];
+		}
 	}
 }

@@ -8,7 +8,10 @@ class Memory {
         
     public:
     typedef map_mem *p_map_mem;
+	p_map_mem head;
+	p_map_mem active;
 
 	Memory();
-	void push_map(p_map_mem *head, int map[20][20]);
+	void push_map(int map[20][20]);
+	void modify_node(p_map_mem *act, int mapToPush[20][20]);
 };
