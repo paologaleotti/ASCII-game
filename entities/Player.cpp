@@ -44,7 +44,6 @@ void Player::mv_left(Room *room){
 	if (room->currentRoom[this->y][this->x-1] != 2){
 		Player::render(room, 0);
 		this->x--;
-		Player::render(room);
 	}
 }
 
@@ -52,7 +51,6 @@ void Player::mv_right(Room *room){
 	if (room->currentRoom[this->y][this->x+1] != 2){
 		Player::render(room, 0);
 		this->x++;
-		Player::render(room);
 	}
 }
 
@@ -60,7 +58,6 @@ void Player::mv_up(Room *room){
 	if (room->currentRoom[this->y-1][this->x] != 2){
 		Player::render(room, 0);
 		this->y--;
-		Player::render(room);
 	}
 }
 
@@ -68,7 +65,6 @@ void Player::mv_down(Room *room){
 	if (room->currentRoom[this->y+1][this->x] != 2){
 		Player::render(room, 0);
 		this->y++;
-		Player::render(room);
 	}
 
 }

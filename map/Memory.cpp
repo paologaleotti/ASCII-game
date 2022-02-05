@@ -2,38 +2,36 @@
 #include <ncurses.h>
 
 Memory::Memory(){
-	this->head = new map_mem;
-	this->active = this->head;
+	this->last = nullptr;
+	this->active = last;
 }
 
-void Memory::push_map(int mapToPush[20][20]){
-	p_map_mem last = this->active;
-	p_map_mem new_map = new map_mem;
-
-	for(int i=0; i<20; i++){
-		for(int j=0; j<20; j++){
-			new_map->map[i][j] = mapToPush[i][j];
+void Memory::fill_map(p_mem *ptr, int map[20][20]){
+	for(int i = 0; i < 20; i++){
+		for(int j = 0; j < 20; j++){
+			(*ptr)->map[i][j] = map[i][j];
 		}
-	}
-	new_map->next = nullptr;
-
-	if(this->head == nullptr){
-		new_map->prec = nullptr;
-		this->head = new_map;
-	}else{
-		while(last->next != nullptr){
-			last = last->next;
-		}
-		last->next = new_map;
-		new_map->prec = last;
 	}
 }
 
-void Memory::modify_node(p_map_mem *act, int mapToPush[20][20]){
-	p_map_mem temp = *act;
-	for(int i=0; i<20; i++){
-		for(int j=0; j<20; j++){
-			temp->map[i][j] = mapToPush[i][j];
-		}
-	}
+void Memory::push_map(int mapToPush[20][20]) {
+
+    if (this->last == nullptr) {
+        this->last = new mem;
+        Memory::fill_map(&this->last, mapToPush);
+        this->last->prec = nullptr;
+        this->last->next = nullptr;
+    } else {
+        p_mem tmp = this->last;
+        this->last->next = new mem;
+        this->last = this->last->next;
+        Memory::fill_map(&this->last, mapToPush);
+        this->last->prec = tmp;
+        this->last->next = nullptr;
+    }
+    this->active = this->last;
+}
+
+void Memory::modify_node(int mapToPush[20][20]){
+	Memory::fill_map(&this->active, mapToPush);
 }
