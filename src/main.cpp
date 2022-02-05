@@ -1,5 +1,6 @@
 #include "Graphics.hpp"
 #include "../map/MapGen.hpp"
+#include "../map/Memory.hpp"
 #include <ncurses.h>
 
 using namespace std;
@@ -27,25 +28,57 @@ int main() {
 	initscr();
 
 	MainWindow mw('#', '@', '&');
-	MapGen mg; 
+	MapGen mg;
+	Memory cache;
+
 	mg.gen_map();
-	Room r(mg.map);
-	Player p(&r, 10, 3, false, 2, 2);
+	cache.push_map(mg.map);
+
+	Room activeRoom(cache.active->map);
+	activeRoom.currentRoom[1][0] = 2;
+	activeRoom.currentRoom[2][0] = 2;
+
+	Player p(&activeRoom, 10, 3, false, 2, 2);
 	int c = 0;
 
 	// MAIN GAME LOOP
 	while(true){
-		mw.print_room(&r, &p);
-
+		p.render(&activeRoom);
+		mw.print_room(&activeRoom, &p);
 		c = getch();
-		if(p.check_door(&r, c)){
-			mg.gen_map();
-			r.swap_matrix(mg.map);
+
+		// PORTA PER ANDARE AVANTI
+		if(p.check_door(&activeRoom, c) == 4){
+			p.render(&activeRoom, 0);
+			if(cache.active->next == NULL){
+				mg.gen_map();
+				cache.push_map(mg.map);
+				activeRoom.swap_matrix(cache.active->map);
+			}
+			else{
+				cache.active = cache.active->next;
+				activeRoom.swap_matrix(cache.active->map);
+			}
 			p.x = 1;
 			p.y = 2;
 		}
-		check_key(&p, &r, c);
-		p.render(&r);
+
+		// PORTA PER TORNARE INDIETRO
+		if(p.check_door(&activeRoom, c) == 5){
+			if(cache.active->prec != NULL){
+				cache.active = cache.active->prec;
+				p.render(&activeRoom, 0);
+				activeRoom.swap_matrix(cache.active->map);
+				p.x = 18;
+				p.y = 17;
+			}
+			
+		}
+
+		// controllo il tasto premuto
+		check_key(&p, &activeRoom, c);
+		cache.modify_node(activeRoom.currentRoom);
+		
 	}
 	endwin();
     return 0;
