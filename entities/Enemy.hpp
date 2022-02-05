@@ -1,7 +1,6 @@
 #include "Entity.hpp"
 #include "../room/Room.hpp"
 
-
 class Enemy : public Entity{
     public:
 	int score;
@@ -13,5 +12,6 @@ class Enemy : public Entity{
     void mv_up(Room *room);
     void mv_down(Room *room);
     void rand_mv(Enemy *enemy, Room *room);
+
 
 };

@@ -70,4 +70,7 @@ void Enemy::rand_mv(Enemy *enemy, Room *room){
 	default:
 		break;
 	}
+
+	
 }
+	

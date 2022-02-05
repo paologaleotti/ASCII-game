@@ -12,6 +12,7 @@
         2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
     },
 */
+
 class MapGen {
     private:
         int n_sect = 2;

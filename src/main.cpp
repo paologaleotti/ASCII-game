@@ -5,6 +5,37 @@
 
 using namespace std;
 
+struct enemyList{
+	Enemy enemy;
+	enemyList *next;
+};
+
+typedef enemyList *p_enemyList
+
+p_enemyList head_push(p_enemyList head, Enemy e){
+	p_enemyList temp = new enemyList;
+	temp->enemy = e;
+	temp->next = head;
+	return temp;
+}
+
+void enemy_spawn(Room *room){
+
+	p_enemyList head = new enemyList;
+
+	for(int y = 1; y < 19; y++){
+		for(int x = 1; x < 19; x++){
+			if(room->currentRoom[x][y] == 3){
+				Enemy e(room, 3, 3, 0, x, y, 100);
+				head = head_push(head, e);
+			}
+		}
+
+	}
+
+
+}
+
 void check_key(Player *player, Room *room, char c){
 	switch (c){
 	case 'a':

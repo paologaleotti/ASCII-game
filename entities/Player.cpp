@@ -41,28 +41,28 @@ int Player::check_door(Room *room, int dir){
 }
 
 void Player::mv_left(Room *room){
-	if (room->currentRoom[this->y][this->x-1] != 2){
+	if (room->currentRoom[this->y][this->x-1] != 2 && room->currentRoom[this->y][this->x-1] != 3){
 		Player::render(room, 0);
 		this->x--;
 	}
 }
 
 void Player::mv_right(Room *room){
-	if (room->currentRoom[this->y][this->x+1] != 2){
+	if (room->currentRoom[this->y][this->x+1] != 2 && room->currentRoom[this->y][this->x+1] != 3){
 		Player::render(room, 0);
 		this->x++;
 	}
 }
 
 void Player::mv_up(Room *room){
-	if (room->currentRoom[this->y-1][this->x] != 2){
+	if (room->currentRoom[this->y-1][this->x] != 2 && room->currentRoom[this->y-1][this->x] != 3){
 		Player::render(room, 0);
 		this->y--;
 	}
 }
 
 void Player::mv_down(Room *room){
-	if (room->currentRoom[this->y+1][this->x] != 2){
+	if (room->currentRoom[this->y+1][this->x] != 2 && room->currentRoom[this->y+1][this->x] != 3){
 		Player::render(room, 0);
 		this->y++;
 	}
