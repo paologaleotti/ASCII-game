@@ -1,6 +1,8 @@
 #include "Graphics.hpp"
 #include "../map/MapGen.hpp"
+#include "../entities/Enemy.hpp"
 #include <ncurses.h>
+
 
 using namespace std;
 
@@ -22,6 +24,8 @@ void check_key(Player *player, Room *room, char c){
 		break;
 	}
 }
+
+
 
 int main() {
 	initscr();
