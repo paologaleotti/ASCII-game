@@ -1,16 +1,20 @@
 #include "Graphics.hpp"
 #include "../map/MapGen.hpp"
 #include "../map/Memory.hpp"
+#include "../entities/Player.hpp"
+#include "../entities/Enemy.hpp"
+#include "../room/Room.hpp"
 #include <ncurses.h>
 
 using namespace std;
 
+/*
 struct enemyList{
 	Enemy enemy;
 	enemyList *next;
 };
 
-typedef enemyList *p_enemyList
+typedef enemyList *p_enemyList;
 
 p_enemyList head_push(p_enemyList head, Enemy e){
 	p_enemyList temp = new enemyList;
@@ -35,6 +39,7 @@ void enemy_spawn(Room *room){
 
 
 }
+*/
 
 void check_key(Player *player, Room *room, char c){
 	switch (c){

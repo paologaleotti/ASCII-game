@@ -1,2 +1,2 @@
 # ASCII_game
-just a simple platform game for a school project
+Top-down roguelike dungeon crawler built in C++ using Ncurses

@@ -1,3 +1,6 @@
+#ifndef MAPGEN_HPP
+#define MAPGEN_HPP
+
 /*  map segment template
     {
                 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
@@ -317,3 +320,5 @@ class MapGen {
         int map[20][20];
         void gen_map();
 };
+
+#endif
