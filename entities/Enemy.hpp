@@ -16,7 +16,6 @@ class Enemy : public Entity{
     void mv_right(Room *room);
     void mv_up(Room *room);
     void mv_down(Room *room);
-    void rand_mv(Enemy *enemy, Room *room);
 
 };
 #endif

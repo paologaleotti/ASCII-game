@@ -68,3 +68,10 @@ void Player::mv_down(Room *room){
 	}
 
 }
+
+void Player::enemy_kill(Room *room){
+	if(room->currentRoom[this->y][this->x-1] == 3) room->currentRoom[this->y][this->x-1] = 0;
+	else if(room->currentRoom[this->y][this->x+1] == 3) room->currentRoom[this->y][this->x+1] = 0;
+	else if(room->currentRoom[this->y+1][this->x] == 3) room->currentRoom[this->y+1][this->x] = 0;
+	else if(room->currentRoom[this->y-1][this->x] == 3) room->currentRoom[this->y-1][this->x] = 0;
+}

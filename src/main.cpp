@@ -5,16 +5,20 @@
 #include "../entities/Enemy.hpp"
 #include "../room/Room.hpp"
 #include <ncurses.h>
+#include <stdlib.h>
+#include <time.h>
 
 using namespace std;
 
-/*
+
 struct enemyList{
 	Enemy enemy;
 	enemyList *next;
 };
 
 typedef enemyList *p_enemyList;
+
+p_enemyList enemyHead = NULL;
 
 p_enemyList head_push(p_enemyList head, Enemy e){
 	p_enemyList temp = new enemyList;
@@ -23,12 +27,12 @@ p_enemyList head_push(p_enemyList head, Enemy e){
 	return temp;
 }
 
-void enemy_spawn(Room *room){
+p_enemyList enemy_obj_assign(p_enemyList head, Room *room){
 
-	p_enemyList head = new enemyList;
+	head = new enemyList;
 
-	for(int y = 1; y < 19; y++){
-		for(int x = 1; x < 19; x++){
+	for(int y = 0; y < 20; y++){
+		for(int x = 0; x < 20; x++){
 			if(room->currentRoom[x][y] == 3){
 				Enemy e(room, 3, 3, 0, x, y, 100);
 				head = head_push(head, e);
@@ -37,9 +41,45 @@ void enemy_spawn(Room *room){
 
 	}
 
+	return head;
 
 }
-*/
+
+void rand_mv(Room *room, Enemy *enemy){
+	
+	srand(time(NULL));
+    int m = rand()%4;
+
+	switch (m){
+	case '0':
+		enemy->mv_left(room);
+		break;
+	case '1':
+		enemy->mv_right(room);
+		break;
+	case '2':
+		enemy->mv_up(room);
+		break;
+	case '3':
+		enemy->mv_down(room);
+		break;
+	default:
+		break;
+	}
+}
+
+void enemy_movement(p_enemyList head, Room *room){
+
+	p_enemyList temp = head;
+	while(temp!=NULL){
+		rand_mv(room, &temp->enemy);
+		temp = temp->next;
+	}
+
+
+}
+
+
 
 void check_key(Player *player, Room *room, char c){
 	switch (c){
@@ -55,6 +95,8 @@ void check_key(Player *player, Room *room, char c){
 	case 's':
 		player->mv_down(room);
 		break;
+	case 'r':
+		player->enemy_kill(room);
 	default:
 		break;
 	}
@@ -77,6 +119,8 @@ int main() {
 	Player p(&activeRoom, 10, 3, false, 2, 2);
 	int c = 0;
 
+	enemyHead = enemy_obj_assign(enemyHead, &activeRoom);
+
 	// MAIN GAME LOOP
 	while(true){
 		p.render(&activeRoom);
@@ -90,6 +134,7 @@ int main() {
 				mg.gen_map();
 				cache.push_map(mg.map);
 				activeRoom.swap_matrix(cache.active->map);
+				enemyHead = enemy_obj_assign(enemyHead, &activeRoom);
 			}
 			else{
 				cache.active = cache.active->next;
@@ -112,6 +157,7 @@ int main() {
 		}
 
 		// controllo il tasto premuto
+		enemy_movement(enemyHead, &activeRoom);
 		check_key(&p, &activeRoom, c);
 		cache.modify_node(activeRoom.currentRoom);
 		
