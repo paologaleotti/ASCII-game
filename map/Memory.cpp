@@ -21,6 +21,7 @@ void Memory::push_map(int mapToPush[20][20]) {
         Memory::fill_map(&this->last, mapToPush);
         this->last->prec = nullptr;
         this->last->next = nullptr;
+		this->last->level_id = 1;
     } else {
         p_mem tmp = this->last;
         this->last->next = new mem;
@@ -28,6 +29,7 @@ void Memory::push_map(int mapToPush[20][20]) {
         Memory::fill_map(&this->last, mapToPush);
         this->last->prec = tmp;
         this->last->next = nullptr;
+		this->last->level_id = tmp->level_id + 1;
     }
     this->active = this->last;
 }

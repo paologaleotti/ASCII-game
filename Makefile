@@ -27,6 +27,6 @@ MapGen.o: map/MapGen.cpp map/MapGen.hpp
 
 Memory.o: map/Memory.cpp map/Memory.hpp
 	g++ -c map/Memory.cpp -lncurses
-
+	
 clean:
 	rm -f $(OBJS) $(OUT)

@@ -2,6 +2,7 @@ class Memory {
     private:
         struct mem {
             int map[20][20];
+			int level_id;
             mem *prec;
             mem *next;
         };
