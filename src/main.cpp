@@ -8,12 +8,13 @@
 
 using namespace std;
 
+/*
 struct enemyList{
 	Enemy enemy;
 	enemyList *next;
 };
 
-typedef enemyList *p_enemyList
+typedef enemyList *p_enemyList;
 
 p_enemyList head_push(p_enemyList head, Enemy e){
 	p_enemyList temp = new enemyList;
@@ -38,6 +39,7 @@ void enemy_spawn(Room *room){
 
 
 }
+*/
 
 void check_key(Player *player, Room *room, char c){
 	switch (c){

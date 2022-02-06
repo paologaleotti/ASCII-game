@@ -8,7 +8,8 @@
 class Enemy : public Entity{
     public:
 	int score;
-
+	
+	Enemy();
 	Enemy(Room *room, int hp, int dmg, bool isDead=false, int x=0, int y=0, int score=0);
 	void render(Room *room, bool spawn=true);
 	void mv_left(Room *room);
