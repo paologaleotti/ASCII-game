@@ -4,6 +4,7 @@
 #include "Entity.hpp"
 #include "../room/Room.hpp"
 
+
 class Player : public Entity{
     public:
 	int score;
