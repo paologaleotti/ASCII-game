@@ -1,3 +1,6 @@
+#ifndef ENTITY_HPP
+#define ENTITY_HPP
+
 class Entity{
     public:
         int hp; // vita
@@ -13,3 +16,4 @@ class Entity{
         void mv_up();
         void mv_down();
 };
+#endif

@@ -1,3 +1,6 @@
+#ifndef MEMORY_HPP
+#define MEMORY_HPP
+
 class Memory {
     private:
         struct mem {
@@ -17,3 +20,4 @@ class Memory {
 	void push_map(int mapToPush[20][20]);
 	void modify_node(int mapToPush[20][20]);
 };
+#endif

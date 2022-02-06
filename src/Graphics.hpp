@@ -1,4 +1,8 @@
+#ifndef GRAPHICS_HPP
+#define GRAPHICS_HPP
+
 #include "../entities/Player.hpp"
+#include "../room/Room.hpp"
 #include <ncurses.h>
 
 class MainWindow {
@@ -21,3 +25,4 @@ public:
 	// scambia la stanza con un'altra data come parametro
 	void swap_room(Room *room);
 };
+#endif

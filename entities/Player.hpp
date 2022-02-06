@@ -1,3 +1,6 @@
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
+
 #include "Entity.hpp"
 #include "../room/Room.hpp"
 
@@ -14,3 +17,4 @@ class Player : public Entity{
 	void pickup_artifact(Room *room);
 	int check_door(Room *room, int dir);
 };
+#endif

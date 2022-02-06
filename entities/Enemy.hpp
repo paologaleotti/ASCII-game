@@ -1,3 +1,6 @@
+#ifndef ENEMY_HPP
+#define ENEMY_HPP
+
 #include "Entity.hpp"
 #include "../room/Room.hpp"
 
@@ -15,3 +18,4 @@ class Enemy : public Entity{
     void rand_mv(Enemy *enemy, Room *room);
 
 };
+#endif

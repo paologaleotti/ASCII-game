@@ -1,6 +1,9 @@
 #include "Graphics.hpp"
 #include "../map/MapGen.hpp"
 #include "../map/Memory.hpp"
+#include "../entities/Player.hpp"
+#include "../entities/Enemy.hpp"
+#include "../room/Room.hpp"
 #include <ncurses.h>
 
 using namespace std;
