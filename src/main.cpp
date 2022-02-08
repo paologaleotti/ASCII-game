@@ -46,33 +46,40 @@ p_enemyList enemy_obj_assign(p_enemyList head, Room *room){
 }
 
 void rand_mv(Room *room, p_enemyList p){
-	
-    int m = rand()%4;
 
-	switch (m){
-	case 0:
-		p->enemy.mv_left(room);
-		break;
-	case 1:
-		p->enemy.mv_right(room);
-		break;
-	case 2:
-		p->enemy.mv_up(room);
-		break;
-	case 3:
-		p->enemy.mv_down(room);
-		break;
-	default:
-		break;
+	bool check = false;
+
+
+	while(!check){
+
+		int m = rand()%4;
+
+		switch (m){
+		case 0:
+			check = p->enemy.mv_left(room);	
+			break;
+		case 1:
+			check = p->enemy.mv_right(room);
+			break;
+		case 2:
+			check = p->enemy.mv_up(room);
+			break;
+		case 3:
+			check = p->enemy.mv_down(room);
+			break;
+		default:
+			break;
+		}
 	}
 }
 
 void enemy_movement(p_enemyList head, Room *room){
 
 	p_enemyList temp = head;
-	srand(time(NULL));
-	while(temp!=NULL){
-		rand_mv(room, temp);
+	while(temp->next!=NULL){
+		if(!(temp->enemy.isDead)){
+			rand_mv(room, temp);
+		}
 		temp = temp->next;
 	}
 
@@ -97,6 +104,7 @@ void check_key(Player *player, Room *room, char c){
 		break;
 	case 'r':
 		player->enemy_kill(room);
+		break;
 	default:
 		break;
 	}
@@ -104,6 +112,7 @@ void check_key(Player *player, Room *room, char c){
 
 int main() {
 	initscr();
+	srand(time(NULL));
 
 	MainWindow mw('#', '@', '&');
 	MapGen mg;
@@ -139,6 +148,7 @@ int main() {
 			else{
 				cache.active = cache.active->next;
 				activeRoom.swap_matrix(cache.active->map);
+				enemyHead = enemy_obj_assign(enemyHead, &activeRoom);
 			}
 			p.x = 1;
 			p.y = 2;
@@ -150,6 +160,7 @@ int main() {
 				cache.active = cache.active->prec;
 				p.render(&activeRoom, 0);
 				activeRoom.swap_matrix(cache.active->map);
+				enemyHead = enemy_obj_assign(enemyHead, &activeRoom);
 				p.x = 18;
 				p.y = 17;
 			}
@@ -157,8 +168,8 @@ int main() {
 		}
 
 		// controllo il tasto premuto
-		enemy_movement(enemyHead, &activeRoom);
 		check_key(&p, &activeRoom, c);
+		enemy_movement(enemyHead, &activeRoom);
 		cache.modify_node(activeRoom.currentRoom);
 		
 	}
