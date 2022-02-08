@@ -50,7 +50,6 @@ void Enemy::mv_down(Room *room){
 		this->y++;
 		Enemy::render(room);
 	}
-
 }
 
 

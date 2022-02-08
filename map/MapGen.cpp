@@ -14,7 +14,7 @@ void MapGen::gen_map() {
     }
 
     m = rand()%MapGen::n_sect;
-    int cont = 2;
+    int cont = 3;
 
     for (int y = 0; y < 10; y++) {
         for (int x = 0; x < 10; x++) {
@@ -28,7 +28,7 @@ void MapGen::gen_map() {
     }
 
     m = rand()%MapGen::n_sect;
-    cont = 2;
+    cont = 3;
 
     for (int y = 0; y < 10; y++) {
         for (int x = 0; x < 10; x++) { 
@@ -42,7 +42,7 @@ void MapGen::gen_map() {
     }
 
     m = rand()%MapGen::n_sect;
-    cont = 2;
+    cont = 3;
 
     for (int y = 0; y < 10; y++) {
         for (int x = 0; x < 10; x++) { 

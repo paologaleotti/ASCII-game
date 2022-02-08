@@ -18,7 +18,7 @@ struct enemyList{
 
 typedef enemyList *p_enemyList;
 
-p_enemyList enemyHead = NULL;
+p_enemyList enemyHead = new enemyList;
 
 p_enemyList head_push(p_enemyList head, Enemy e){
 	p_enemyList temp = new enemyList;
@@ -33,7 +33,7 @@ p_enemyList enemy_obj_assign(p_enemyList head, Room *room){
 
 	for(int y = 0; y < 20; y++){
 		for(int x = 0; x < 20; x++){
-			if(room->currentRoom[x][y] == 3){
+			if(room->currentRoom[y][x] == 3){
 				Enemy e(room, 3, 3, 0, x, y, 100);
 				head = head_push(head, e);
 			}
@@ -45,23 +45,22 @@ p_enemyList enemy_obj_assign(p_enemyList head, Room *room){
 
 }
 
-void rand_mv(Room *room, Enemy *enemy){
+void rand_mv(Room *room, p_enemyList p){
 	
-	srand(time(NULL));
     int m = rand()%4;
 
 	switch (m){
-	case '0':
-		enemy->mv_left(room);
+	case 0:
+		p->enemy.mv_left(room);
 		break;
-	case '1':
-		enemy->mv_right(room);
+	case 1:
+		p->enemy.mv_right(room);
 		break;
-	case '2':
-		enemy->mv_up(room);
+	case 2:
+		p->enemy.mv_up(room);
 		break;
-	case '3':
-		enemy->mv_down(room);
+	case 3:
+		p->enemy.mv_down(room);
 		break;
 	default:
 		break;
@@ -71,8 +70,9 @@ void rand_mv(Room *room, Enemy *enemy){
 void enemy_movement(p_enemyList head, Room *room){
 
 	p_enemyList temp = head;
+	srand(time(NULL));
 	while(temp!=NULL){
-		rand_mv(room, &temp->enemy);
+		rand_mv(room, temp);
 		temp = temp->next;
 	}
 
