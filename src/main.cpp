@@ -4,89 +4,12 @@
 #include "../entities/Player.hpp"
 #include "../entities/Enemy.hpp"
 #include "../room/Room.hpp"
+#include "../combat/Combat.hpp"
 #include <ncurses.h>
 #include <stdlib.h>
 #include <time.h>
 
 using namespace std;
-
-
-struct enemyList{
-	Enemy enemy;
-	enemyList *next;
-};
-
-typedef enemyList *p_enemyList;
-
-p_enemyList enemyHead = new enemyList;
-
-p_enemyList head_push(p_enemyList head, Enemy e){
-	p_enemyList temp = new enemyList;
-	temp->enemy = e;
-	temp->next = head;
-	return temp;
-}
-
-p_enemyList enemy_obj_assign(p_enemyList head, Room *room){
-
-	head = new enemyList;
-
-	for(int y = 0; y < 20; y++){
-		for(int x = 0; x < 20; x++){
-			if(room->currentRoom[y][x] == 3){
-				Enemy e(room, 3, 3, 0, x, y, 100);
-				head = head_push(head, e);
-			}
-		}
-
-	}
-
-	return head;
-
-}
-
-void rand_mv(Room *room, p_enemyList p){
-
-	bool check = false;
-
-
-	while(!check){
-
-		int m = rand()%4;
-
-		switch (m){
-		case 0:
-			check = p->enemy.mv_left(room);	
-			break;
-		case 1:
-			check = p->enemy.mv_right(room);
-			break;
-		case 2:
-			check = p->enemy.mv_up(room);
-			break;
-		case 3:
-			check = p->enemy.mv_down(room);
-			break;
-		default:
-			break;
-		}
-	}
-}
-
-void enemy_movement(p_enemyList head, Room *room){
-
-	p_enemyList temp = head;
-	while(temp->next!=NULL){
-		if(!(temp->enemy.isDead)){
-			rand_mv(room, temp);
-		}
-		temp = temp->next;
-	}
-
-
-}
-
-
 
 void check_key(Player *player, Room *room, char c){
 	switch (c){
@@ -118,6 +41,8 @@ int main() {
 	MapGen mg;
 	Memory cache;
 
+	Combat combatSystem;
+
 	mg.gen_map();
 	cache.push_map(mg.map);
 
@@ -128,7 +53,7 @@ int main() {
 	Player p(&activeRoom, 10, 3, false, 2, 2);
 	int c = 0;
 
-	enemyHead = enemy_obj_assign(enemyHead, &activeRoom);
+	combatSystem.enemy_obj_assign(&activeRoom);
 
 	// MAIN GAME LOOP
 	while(true){
@@ -143,12 +68,12 @@ int main() {
 				mg.gen_map();
 				cache.push_map(mg.map);
 				activeRoom.swap_matrix(cache.active->map);
-				enemyHead = enemy_obj_assign(enemyHead, &activeRoom);
+				combatSystem.enemy_obj_assign(&activeRoom);
 			}
 			else{
 				cache.active = cache.active->next;
 				activeRoom.swap_matrix(cache.active->map);
-				enemyHead = enemy_obj_assign(enemyHead, &activeRoom);
+				combatSystem.enemy_obj_assign(&activeRoom);
 			}
 			p.x = 1;
 			p.y = 2;
@@ -160,7 +85,7 @@ int main() {
 				cache.active = cache.active->prec;
 				p.render(&activeRoom, 0);
 				activeRoom.swap_matrix(cache.active->map);
-				enemyHead = enemy_obj_assign(enemyHead, &activeRoom);
+				combatSystem.enemy_obj_assign(&activeRoom);
 				p.x = 18;
 				p.y = 17;
 			}
@@ -169,7 +94,7 @@ int main() {
 
 		// controllo il tasto premuto
 		check_key(&p, &activeRoom, c);
-		enemy_movement(enemyHead, &activeRoom);
+		combatSystem.enemy_movement(&activeRoom);
 		cache.modify_node(activeRoom.currentRoom);
 		
 	}
