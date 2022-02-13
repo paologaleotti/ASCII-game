@@ -44,6 +44,7 @@ int main() {
 	Combat combatSystem;
 
 	mg.gen_map();
+	mg.gen_enemy();
 	cache.push_map(mg.map);
 
 	Room activeRoom(cache.active->map);
@@ -66,6 +67,7 @@ int main() {
 			p.render(&activeRoom, 0);
 			if(cache.active->next == NULL){
 				mg.gen_map();
+				mg.gen_enemy();
 				cache.push_map(mg.map);
 				activeRoom.swap_matrix(cache.active->map);
 				combatSystem.enemy_obj_assign(&activeRoom);

@@ -9,9 +9,10 @@
 #define BARRICADE 6
 #define ARTIFACT 7
 #define POWERUP 8
-#define UI_SCORE 9
-#define UI_HP 10
-#define UI_LEVEL 11
+#define NS_AIR 9
+#define UI_SCORE 10
+#define UI_HP 11
+#define UI_LEVEL 12
 
 
 MainWindow::MainWindow(char wallch, char playerch, char enemych){
@@ -23,6 +24,7 @@ MainWindow::MainWindow(char wallch, char playerch, char enemych){
 	init_pair(PLAYER,  COLOR_YELLOW,    COLOR_BLACK);
 	init_pair(DOOR_EXIT,   COLOR_RED,      COLOR_BLACK);	
 	init_pair(AIR,  COLOR_BLACK,    COLOR_BLACK);
+	init_pair(NS_AIR,  COLOR_BLACK,    COLOR_BLACK);
 	init_pair(DOOR_BACK,   COLOR_GREEN,    COLOR_BLACK);
 	init_pair(ENEMY, COLOR_MAGENTA,  COLOR_BLACK);
 	init_pair(BARRICADE, COLOR_RED,  COLOR_BLACK);
