@@ -26,7 +26,7 @@ void check_key(Player *player, Room *room, char c){
 		player->mv_down(room);
 		break;
 	case 'r':
-		player->enemy_kill(room);
+		//player->enemy_kill(room);
 		break;
 	default:
 		break;

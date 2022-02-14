@@ -68,4 +68,11 @@ void Combat::enemy_movement(Room *room){
 
 
 }
+/* Devo ancora decidere come michia farla sta uccisione. Forse faccio tutto in funzione
+void Combat::enemy_kill(Room *room, Player *player){
+	if(room->currentRoom[this->y][this->x-1] == 3) room->currentRoom[this->y][this->x-1] = 0;
+	else if(room->currentRoom[this->y][this->x+1] == 3) room->currentRoom[this->y][this->x+1] = 0;
+	else if(room->currentRoom[this->y+1][this->x] == 3) room->currentRoom[this->y+1][this->x] = 0;
+	else if(room->currentRoom[this->y-1][this->x] == 3) room->currentRoom[this->y-1][this->x] = 0;
 
+*/
