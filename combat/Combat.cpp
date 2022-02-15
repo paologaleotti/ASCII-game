@@ -68,11 +68,51 @@ void Combat::enemy_movement(Room *room){
 
 
 }
-/* Devo ancora decidere come michia farla sta uccisione. Forse faccio tutto in funzione
-void Combat::enemy_kill(Room *room, Player *player){
-	if(room->currentRoom[this->y][this->x-1] == 3) room->currentRoom[this->y][this->x-1] = 0;
-	else if(room->currentRoom[this->y][this->x+1] == 3) room->currentRoom[this->y][this->x+1] = 0;
-	else if(room->currentRoom[this->y+1][this->x] == 3) room->currentRoom[this->y+1][this->x] = 0;
-	else if(room->currentRoom[this->y-1][this->x] == 3) room->currentRoom[this->y-1][this->x] = 0;
 
-*/
+void Combat::enemy_kill(Room *room, Player *player){
+	if(room->currentRoom[player->y][player->x-1] == 3){
+		p_enemyList temp = this->head;
+		while(temp != NULL){
+			if(player->y == temp->enemy.y && player->x-1 == temp->enemy.x){
+				temp->enemy.isDead = true;
+				room->currentRoom[player->y][player->x-1] = 0;
+			}
+			temp = temp->next;
+		}
+
+	}
+	else if(room->currentRoom[player->y][player->x+1] == 3){
+		p_enemyList temp = this->head;
+		while(temp != NULL){
+			if(player->y == temp->enemy.y && player->x+1 == temp->enemy.x){
+				temp->enemy.isDead = true;
+				room->currentRoom[player->y][player->x+1] = 0;
+			}
+			temp = temp->next;
+		}
+
+	}
+	else if(room->currentRoom[player->y+1][player->x] == 3){
+		p_enemyList temp = this->head;
+		while(temp != NULL){
+			if(player->y+1 == temp->enemy.y && player->x == temp->enemy.x){
+				temp->enemy.isDead = true;
+				room->currentRoom[player->y+1][player->x] = 0;
+			}
+			temp = temp->next;
+		}
+
+	}
+	else if(room->currentRoom[player->y-1][player->x] == 3){
+		p_enemyList temp = this->head;
+		while(temp != NULL){
+			if(player->y-1 == temp->enemy.y && player->x == temp->enemy.x){
+				temp->enemy.isDead = true;
+				room->currentRoom[player->y-1][player->x] = 0;
+			}
+			temp = temp->next;
+		}
+
+	}
+
+}
