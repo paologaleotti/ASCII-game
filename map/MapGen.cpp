@@ -46,17 +46,42 @@ void MapGen::gen_map() {
 
 void MapGen::gen_enemy(int n) {
     srand(time(NULL));
-    int dist = 5;
 
     for (int y = 1; y < 19; y++) {
-        int dist = 4;
+        int dist = 5;
         for (int x = 1; x < 19; x++) {
-            if(this->map[y][x] == 0 && rand()%20 == 0 && n > 0 && dist < 0){
+            if(this->map[y][x] == 0 && rand()%20 == 0 && n > 0 && dist < 0) {
                 this->map[y][x] = 3;
                 n--;
                 dist = 5;
             } else {
                 dist--;
+            }
+        }
+    }
+}
+
+void MapGen::gen_artifacts() {
+    srand(time(NULL));
+
+    for (int y = 1; y < 19; y++) {
+        for (int x = 1; x < 19; x++) { 
+            if (this->map[y][x] == 7 && rand()%3 == 0) {
+                this->map[y][x] = 0;
+            }
+        }
+    }
+}
+
+void MapGen::gen_powerup() {
+    srand(time(NULL));
+    bool is_generated = false;
+
+    for (int y = 1; y < 19; y++) {
+        for (int x = 1; x < 19; x++) { 
+            if (this->map[y][x] == 0 && rand()%450 == 0 && !is_generated) {
+                this->map[y][x] = 8;
+                is_generated = true;
             }
         }
     }

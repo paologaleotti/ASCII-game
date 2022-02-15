@@ -29,7 +29,7 @@ MainWindow::MainWindow(char wallch, char playerch, char enemych){
 	init_pair(ENEMY, COLOR_MAGENTA,  COLOR_BLACK);
 	init_pair(BARRICADE, COLOR_RED,  COLOR_BLACK);
 	init_pair(ARTIFACT, COLOR_YELLOW,  COLOR_BLACK);
-	init_pair(POWERUP, COLOR_CYAN,  COLOR_BLACK);
+	init_pair(POWERUP, COLOR_WHITE,  COLOR_BLACK);
 	init_pair(UI_SCORE, COLOR_BLACK,  COLOR_YELLOW);
 	init_pair(UI_HP, COLOR_BLACK,  COLOR_RED);
 	init_pair(UI_LEVEL, COLOR_BLACK,  COLOR_GREEN);

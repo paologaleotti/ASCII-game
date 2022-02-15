@@ -320,6 +320,8 @@ class MapGen {
         int map[20][20];
         void gen_map();
         void gen_enemy(int n_enemy = 8);
+        void gen_artifacts();
+        void gen_powerup();
 };
 
 #endif

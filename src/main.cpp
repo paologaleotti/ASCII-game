@@ -33,6 +33,15 @@ void check_key(Player *player, Room *room, char c){
 	}
 }
 
+MapGen generate(MapGen map) {
+	map.gen_map();
+	map.gen_enemy();
+	map.gen_artifacts();
+	map.gen_powerup();
+
+	return map;
+}
+
 int main() {
 	initscr();
 	srand(time(NULL));
@@ -43,8 +52,7 @@ int main() {
 
 	Combat combatSystem;
 
-	mg.gen_map();
-	mg.gen_enemy();
+	mg = generate(mg);
 	cache.push_map(mg.map);
 
 	Room activeRoom(cache.active->map);
@@ -66,8 +74,7 @@ int main() {
 		if(p.check_door(&activeRoom, c) == 4){
 			p.render(&activeRoom, 0);
 			if(cache.active->next == NULL){
-				mg.gen_map();
-				mg.gen_enemy();
+				mg = generate(mg);
 				cache.push_map(mg.map);
 				activeRoom.swap_matrix(cache.active->map);
 				combatSystem.enemy_obj_assign(&activeRoom);
