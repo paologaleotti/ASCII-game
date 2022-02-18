@@ -48,12 +48,12 @@ void MapGen::gen_enemy(int n) {
     srand(time(NULL));
 
     for (int y = 1; y < 19; y++) {
-        int dist = 5;
+        int dist = (rand()%3)+4;
         for (int x = 1; x < 19; x++) {
             if(this->map[y][x] == 0 && rand()%20 == 0 && n > 0 && dist < 0) {
                 this->map[y][x] = 3;
                 n--;
-                dist = 5;
+                dist = (rand()%3)+4;
             } else {
                 dist--;
             }

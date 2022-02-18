@@ -1,4 +1,4 @@
-OBJS = main.o Graphics.o Entity.o Player.o Enemy.o Room.o MapGen.o Memory.o Combat.o
+OBJS = main.o Graphics.o Entity.o Player.o Enemy.o Room.o MapGen.o Memory.o Combat.o Pickups.o
 OUT = main.out
 
 all: $(OBJS)
@@ -30,6 +30,9 @@ Memory.o: map/Memory.cpp map/Memory.hpp
 
 Combat.o: combat/Combat.cpp combat/Combat.hpp
 	g++ -c combat/Combat.cpp -lncurses
-	
+
+Pickups.o: pickups/Pickups.cpp pickups/Pickups.hpp
+	g++ -c pickups/Pickups.cpp
+
 clean:
 	rm -f $(OBJS) $(OUT)

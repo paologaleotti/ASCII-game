@@ -2,9 +2,9 @@
 #include "../map/MapGen.hpp"
 #include "../map/Memory.hpp"
 #include "../entities/Player.hpp"
-#include "../entities/Enemy.hpp"
 #include "../room/Room.hpp"
 #include "../combat/Combat.hpp"
+#include "../pickups/Pickups.hpp"
 #include <ncurses.h>
 #include <stdlib.h>
 #include <time.h>
@@ -51,6 +51,7 @@ int main() {
 	Memory cache;
 
 	Combat combatSystem;
+	Pickups pkup;
 
 	mg = generate(mg);
 	cache.push_map(mg.map);
@@ -63,6 +64,7 @@ int main() {
 	int c = 0;
 
 	combatSystem.enemy_obj_assign(&activeRoom);
+	pkup.pickup_obj_assign(&activeRoom);
 
 	// MAIN GAME LOOP
 	while(true){
@@ -76,14 +78,15 @@ int main() {
 			if(cache.active->next == NULL){
 				mg = generate(mg);
 				cache.push_map(mg.map);
-				activeRoom.swap_matrix(cache.active->map);
-				combatSystem.enemy_obj_assign(&activeRoom);
 			}
-			else{
+			else {
 				cache.active = cache.active->next;
-				activeRoom.swap_matrix(cache.active->map);
-				combatSystem.enemy_obj_assign(&activeRoom);
 			}
+
+			activeRoom.swap_matrix(cache.active->map);
+			combatSystem.enemy_obj_assign(&activeRoom);
+			pkup.pickup_obj_assign(&activeRoom);
+
 			p.x = 1;
 			p.y = 2;
 		}
@@ -95,6 +98,7 @@ int main() {
 				p.render(&activeRoom, 0);
 				activeRoom.swap_matrix(cache.active->map);
 				combatSystem.enemy_obj_assign(&activeRoom);
+				pkup.pickup_obj_assign(&activeRoom);
 				p.x = 18;
 				p.y = 17;
 			}
@@ -104,6 +108,7 @@ int main() {
 		// controllo il tasto premuto
 		check_key(&p, &activeRoom, c);
 		combatSystem.enemy_movement(&activeRoom);
+		pkup.check_if_exist(&activeRoom);
 		cache.modify_node(activeRoom.currentRoom);
 		
 	}
