@@ -67,7 +67,7 @@ int main() {
 	pkup.pickup_obj_assign(&activeRoom);
 
 	// MAIN GAME LOOP
-	while(true){
+	while(c != 'q'){
 		p.render(&activeRoom);
 		mw.print_room(&activeRoom, &p, cache.active->level_id);
 		c = getch();
@@ -105,6 +105,8 @@ int main() {
 			
 		}
 
+		p.add_score(&activeRoom, c);
+		
 		// controllo il tasto premuto
 		check_key(&p, &activeRoom, c);
 		combatSystem.enemy_movement(&activeRoom);

@@ -18,5 +18,6 @@ class Player : public Entity{
 	void pickup_artifact(Room *room);
 	int check_door(Room *room, int dir);
 	void enemy_kill(Room *room);
+	void add_score(Room *room, int dir);
 };
 #endif
