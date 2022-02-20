@@ -1,6 +1,7 @@
 #ifndef COMBAT_HPP
 #define COMBAT_HPP
 #include "../entities/Enemy.hpp"
+#include "../entities/Player.hpp"
 #include "../room/Room.hpp"
 #include <time.h>
 #include <stdlib.h>
@@ -22,6 +23,7 @@ class Combat {
     void enemy_obj_assign(Room *room);
     void rand_mv(p_enemyList p, Room *room);
     void enemy_movement(Room *room);
+    void enemy_kill(Room *room, Player *player);
 
 };
 #endif

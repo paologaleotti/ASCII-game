@@ -69,3 +69,50 @@ void Combat::enemy_movement(Room *room){
 
 }
 
+void Combat::enemy_kill(Room *room, Player *player){
+	if(room->currentRoom[player->y][player->x-1] == 3){
+		p_enemyList temp = this->head;
+		while(temp != NULL){
+			if(player->y == temp->enemy.y && player->x-1 == temp->enemy.x){
+				temp->enemy.isDead = true;
+				room->currentRoom[player->y][player->x-1] = 0;
+			}
+			temp = temp->next;
+		}
+
+	}
+	else if(room->currentRoom[player->y][player->x+1] == 3){
+		p_enemyList temp = this->head;
+		while(temp != NULL){
+			if(player->y == temp->enemy.y && player->x+1 == temp->enemy.x){
+				temp->enemy.isDead = true;
+				room->currentRoom[player->y][player->x+1] = 0;
+			}
+			temp = temp->next;
+		}
+
+	}
+	else if(room->currentRoom[player->y+1][player->x] == 3){
+		p_enemyList temp = this->head;
+		while(temp != NULL){
+			if(player->y+1 == temp->enemy.y && player->x == temp->enemy.x){
+				temp->enemy.isDead = true;
+				room->currentRoom[player->y+1][player->x] = 0;
+			}
+			temp = temp->next;
+		}
+
+	}
+	else if(room->currentRoom[player->y-1][player->x] == 3){
+		p_enemyList temp = this->head;
+		while(temp != NULL){
+			if(player->y-1 == temp->enemy.y && player->x == temp->enemy.x){
+				temp->enemy.isDead = true;
+				room->currentRoom[player->y-1][player->x] = 0;
+			}
+			temp = temp->next;
+		}
+
+	}
+
+}

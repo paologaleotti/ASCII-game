@@ -11,7 +11,7 @@
 
 using namespace std;
 
-void check_key(Player *player, Room *room, char c){
+void check_key(Player *player,Combat *combat, Room *room, char c){
 	switch (c){
 	case 'a':
 		player->mv_left(room);
@@ -26,7 +26,7 @@ void check_key(Player *player, Room *room, char c){
 		player->mv_down(room);
 		break;
 	case 'r':
-		player->enemy_kill(room);
+		combat->enemy_kill(room, player);
 		break;
 	default:
 		break;
@@ -108,7 +108,7 @@ int main() {
 		p.add_score(&activeRoom, c);
 		
 		// controllo il tasto premuto
-		check_key(&p, &activeRoom, c);
+		check_key(&p, &combatSystem, &activeRoom, c);
 		combatSystem.enemy_movement(&activeRoom);
 		pkup.check_if_exist(&activeRoom);
 		cache.modify_node(activeRoom.currentRoom);
