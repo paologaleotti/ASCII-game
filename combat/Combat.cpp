@@ -28,7 +28,7 @@ void Combat::enemy_obj_assign(Room *room){
 
 }
 
-void Combat::rand_mv(p_enemyList p, Room *room){
+void Combat::rand_mv(p_enemyList p_enemy, Room *room){
 
 	bool check = false;
 
@@ -39,16 +39,16 @@ void Combat::rand_mv(p_enemyList p, Room *room){
 
 		switch (m){
 		case 0:
-			check = p->enemy.mv_left(room);	
+			check = p_enemy->enemy.mv_left(room);	
 			break;
 		case 1:
-			check = p->enemy.mv_right(room);
+			check = p_enemy->enemy.mv_right(room);
 			break;
 		case 2:
-			check = p->enemy.mv_up(room);
+			check = p_enemy->enemy.mv_up(room);
 			break;
 		case 3:
-			check = p->enemy.mv_down(room);
+			check = p_enemy->enemy.mv_down(room);
 			break;
 		default:
 			break;
@@ -65,8 +65,6 @@ void Combat::enemy_movement(Room *room){
 		}
 		temp = temp->next;
 	}
-
-
 }
 
 void Combat::enemy_kill(Room *room, Player *player){
@@ -112,7 +110,5 @@ void Combat::enemy_kill(Room *room, Player *player){
 			}
 			temp = temp->next;
 		}
-
 	}
-
 }

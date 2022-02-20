@@ -21,7 +21,7 @@ void Enemy::render(Room *room, bool spawn){
 }
 
 bool Enemy::mv_left(Room *room){
-	if (room->currentRoom[this->y][this->x-1] != 2){
+	if (room->currentRoom[this->y][this->x-1] != 2 && room->currentRoom[this->y][this->x-1] != 6){
 		Enemy::render(room, 0);
 		this->x--;
 		Enemy::render(room);
@@ -31,7 +31,7 @@ bool Enemy::mv_left(Room *room){
 }
 
 bool Enemy::mv_right(Room *room){
-	if (room->currentRoom[this->y][this->x+1] != 2){
+	if (room->currentRoom[this->y][this->x+1] != 2 && room->currentRoom[this->y][this->x+1] != 6){
 		Enemy::render(room, 0);
 		this->x++;
 		Enemy::render(room);
@@ -41,7 +41,7 @@ bool Enemy::mv_right(Room *room){
 }
 
 bool Enemy::mv_up(Room *room){
-	if (room->currentRoom[this->y-1][this->x] != 2){
+	if (room->currentRoom[this->y-1][this->x] != 2 && room->currentRoom[this->y-1][this->x] != 6){
 		Enemy::render(room, 0);
 		this->y--;
 		Enemy::render(room);
@@ -51,7 +51,7 @@ bool Enemy::mv_up(Room *room){
 }
 
 bool Enemy::mv_down(Room *room){
-	if (room->currentRoom[this->y+1][this->x] != 2){
+	if (room->currentRoom[this->y+1][this->x] != 2 && room->currentRoom[this->y+1][this->x] != 6){
 		Enemy::render(room, 0);
 		this->y++;
 		Enemy::render(room);
