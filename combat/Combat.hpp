@@ -13,7 +13,6 @@ class Combat {
             Enemy enemy;
             enemyList *next;
         };
-
         
     public:
         typedef enemyList *p_enemyList;

@@ -11,7 +11,7 @@
 
 using namespace std;
 
-void check_key(Player *player,Combat *combat, Room *room, char c){
+void check_key(Player *player, Combat *combat, Room *room, char c){
 	switch (c){
 	case 'a':
 		player->mv_left(room);
@@ -101,7 +101,6 @@ int main() {
 				player.x = 18;
 				player.y = 17;
 			}
-			
 		}
 
 		player.add_score(&activeRoom, c);
@@ -110,7 +109,6 @@ int main() {
 		check_key(&player, &combatSystem, &activeRoom, c);
 		combatSystem.enemy_movement(&activeRoom);
 		pickUp.check_if_exist(&activeRoom);
-		// activeRoom.check_gate();
 		mapMemory.modify_node(activeRoom.currentRoom);
 		
 	}
