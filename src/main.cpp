@@ -11,6 +11,18 @@
 
 using namespace std;
 
+void check_gate(Room *room, Pickups *pick, Combat *com){
+
+	if(pick->head==nullptr && com->head->next==nullptr){
+		for(int x = 16; x < 19; x++){
+			if(room->currentRoom[15][x] == 6) room->currentRoom[15][x] = 0;
+		}
+		for(int y = 15; y < 19; y++){
+			if(room->currentRoom[y][15] == 6) room->currentRoom[y][15] = 0;
+		}
+	}
+}
+
 void check_key(Player *player,Combat *combat, Room *room, char c){
 	switch (c){
 	case 'a':
@@ -110,7 +122,7 @@ int main() {
 		check_key(&player, &combatSystem, &activeRoom, c);
 		combatSystem.enemy_movement(&activeRoom);
 		pickUp.check_if_exist(&activeRoom);
-		// activeRoom.check_gate();
+		check_gate(&activeRoom, &pickUp, &combatSystem);
 		mapMemory.modify_node(activeRoom.currentRoom);
 		
 	}
