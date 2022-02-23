@@ -13,7 +13,7 @@ using namespace std;
 
 void check_gate(Room *room, Pickups *pick, Combat *com){
 
-	if(pick->head==nullptr && com->head->next==nullptr){
+	if(pick->head==nullptr && com->head==nullptr){
 		for(int x = 16; x < 19; x++){
 			if(room->currentRoom[15][x] == 6) room->currentRoom[15][x] = 0;
 		}
