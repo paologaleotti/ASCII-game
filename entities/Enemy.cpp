@@ -1,6 +1,4 @@
 #include "Enemy.hpp"
-#include <ncurses.h>
-
 
 Enemy::Enemy(Room *room, int hp, int dmg, bool isDead, int x, int y, int score){
 	this->hp = hp;

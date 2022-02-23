@@ -1,6 +1,8 @@
 #ifndef MEMORY_HPP
 #define MEMORY_HPP
 
+#include <ncurses.h>
+
 class Memory {
     private:
         struct mem {

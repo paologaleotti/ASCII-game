@@ -1,5 +1,4 @@
 #include "Memory.hpp"
-#include <ncurses.h>
 
 Memory::Memory(){
 	this->last = nullptr;

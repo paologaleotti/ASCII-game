@@ -1,4 +1,4 @@
-#include "Graphics.hpp"
+#include "../graphics/Graphics.hpp"
 #include "../map/MapGen.hpp"
 #include "../map/Memory.hpp"
 #include "../entities/Player.hpp"
@@ -46,72 +46,72 @@ int main() {
 	initscr();
 	srand(time(NULL));
 
-	MainWindow mw('#', '@', '&');
-	MapGen mg;
-	Memory cache;
-
+	MainWindow mainWind('#', '@', '&');
+	MapGen mapGenerator;
+	Memory mapMemory;
 	Combat combatSystem;
-	Pickups pkup;
+	Pickups pickUp;
 
-	mg = generate(mg);
-	cache.push_map(mg.map);
+	mapGenerator = generate(mapGenerator);
+	mapMemory.push_map(mapGenerator.map);
 
-	Room activeRoom(cache.active->map);
+	Room activeRoom(mapMemory.active->map);
 	activeRoom.currentRoom[1][0] = 2;
 	activeRoom.currentRoom[2][0] = 2;
 
-	Player p(&activeRoom, 10, 3, false, 2, 2);
+	Player player(&activeRoom, 10, 3, false, 2, 2);
 	int c = 0;
 
 	combatSystem.enemy_obj_assign(&activeRoom);
-	pkup.pickup_obj_assign(&activeRoom);
+	pickUp.pickup_obj_assign(&activeRoom);
 
 	// MAIN GAME LOOP
 	while(c != 'q'){
-		p.render(&activeRoom);
-		mw.print_room(&activeRoom, &p, cache.active->level_id);
+		player.render(&activeRoom);
+		mainWind.print_room(&activeRoom, &player, mapMemory.active->level_id);
 		c = getch();
 
 		// PORTA PER ANDARE AVANTI
-		if(p.check_door(&activeRoom, c) == 4){
-			p.render(&activeRoom, 0);
-			if(cache.active->next == NULL){
-				mg = generate(mg);
-				cache.push_map(mg.map);
+		if(player.check_door(&activeRoom, c) == 4){
+			player.render(&activeRoom, 0);
+			if(mapMemory.active->next == NULL){
+				mapGenerator = generate(mapGenerator);
+				mapMemory.push_map(mapGenerator.map);
 			}
 			else {
-				cache.active = cache.active->next;
+				mapMemory.active = mapMemory.active->next;
 			}
 
-			activeRoom.swap_matrix(cache.active->map);
+			activeRoom.swap_matrix(mapMemory.active->map);
 			combatSystem.enemy_obj_assign(&activeRoom);
-			pkup.pickup_obj_assign(&activeRoom);
+			pickUp.pickup_obj_assign(&activeRoom);
 
-			p.x = 1;
-			p.y = 2;
+			player.x = 1;
+			player.y = 2;
 		}
 
 		// PORTA PER TORNARE INDIETRO
-		if(p.check_door(&activeRoom, c) == 5){
-			if(cache.active->prec != NULL){
-				cache.active = cache.active->prec;
-				p.render(&activeRoom, 0);
-				activeRoom.swap_matrix(cache.active->map);
+		if(player.check_door(&activeRoom, c) == 5){
+			if(mapMemory.active->prec != NULL){
+				mapMemory.active = mapMemory.active->prec;
+				player.render(&activeRoom, 0);
+				activeRoom.swap_matrix(mapMemory.active->map);
 				combatSystem.enemy_obj_assign(&activeRoom);
-				pkup.pickup_obj_assign(&activeRoom);
-				p.x = 18;
-				p.y = 17;
+				pickUp.pickup_obj_assign(&activeRoom);
+				player.x = 18;
+				player.y = 17;
 			}
 			
 		}
 
-		p.add_score(&activeRoom, c);
+		player.add_score(&activeRoom, c);
 		
 		// controllo il tasto premuto
-		check_key(&p, &combatSystem, &activeRoom, c);
+		check_key(&player, &combatSystem, &activeRoom, c);
 		combatSystem.enemy_movement(&activeRoom);
-		pkup.check_if_exist(&activeRoom);
-		cache.modify_node(activeRoom.currentRoom);
+		pickUp.check_if_exist(&activeRoom);
+		// activeRoom.check_gate();
+		mapMemory.modify_node(activeRoom.currentRoom);
 		
 	}
 	endwin();

@@ -1,5 +1,4 @@
 #include "Player.hpp"
-#include <ncurses.h>
 
 Player::Player(Room *room, int hp, int dmg, bool isDead, int x, int y, int score){
 	this->hp = hp;

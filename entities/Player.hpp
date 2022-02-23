@@ -3,6 +3,7 @@
 
 #include "Entity.hpp"
 #include "../room/Room.hpp"
+#include <ncurses.h>
 
 
 class Player : public Entity{

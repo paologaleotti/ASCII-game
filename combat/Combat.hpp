@@ -1,5 +1,6 @@
 #ifndef COMBAT_HPP
 #define COMBAT_HPP
+
 #include "../entities/Enemy.hpp"
 #include "../entities/Player.hpp"
 #include "../room/Room.hpp"
