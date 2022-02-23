@@ -24,6 +24,7 @@ class Combat {
     void rand_mv(p_enemyList p, Room *room);
     void enemy_movement(Room *room);
     void enemy_kill(Room *room, Player *player);
+    void enemy_destroy(int x,int y);
 
 };
 #endif

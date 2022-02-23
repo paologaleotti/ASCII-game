@@ -67,6 +67,29 @@ void Combat::enemy_movement(Room *room){
 	}
 }
 
+void Combat::enemy_destroy(int x, int y) {
+    p_enemyList tmp = this->head, prec = nullptr;
+    p_enemyList to_destroy;
+    
+    while (tmp != nullptr) {
+        if (tmp->enemy.x == x && tmp->enemy.y == y) {
+            to_destroy = tmp;
+        
+            if (prec == nullptr) {
+                this->head = this->head->next;
+            } else {
+                prec->next = tmp->next;
+            }
+            
+            tmp = tmp->next;
+            delete(to_destroy);
+        } else {
+            prec = tmp;
+            tmp = tmp->next;
+        }
+    }
+}
+
 void Combat::enemy_kill(Room *room, Player *player){
 	if(room->currentRoom[player->y][player->x-1] == 3){
 		p_enemyList temp = this->head;
@@ -74,6 +97,7 @@ void Combat::enemy_kill(Room *room, Player *player){
 			if(player->y == temp->enemy.y && player->x-1 == temp->enemy.x){
 				temp->enemy.isDead = true;
 				room->currentRoom[player->y][player->x-1] = 0;
+				enemy_destroy(temp->enemy.x, temp->enemy.y);
 			}
 			temp = temp->next;
 		}
@@ -85,6 +109,7 @@ void Combat::enemy_kill(Room *room, Player *player){
 			if(player->y == temp->enemy.y && player->x+1 == temp->enemy.x){
 				temp->enemy.isDead = true;
 				room->currentRoom[player->y][player->x+1] = 0;
+				enemy_destroy(temp->enemy.x, temp->enemy.y);
 			}
 			temp = temp->next;
 		}
@@ -96,6 +121,7 @@ void Combat::enemy_kill(Room *room, Player *player){
 			if(player->y+1 == temp->enemy.y && player->x == temp->enemy.x){
 				temp->enemy.isDead = true;
 				room->currentRoom[player->y+1][player->x] = 0;
+				enemy_destroy(temp->enemy.x, temp->enemy.y);
 			}
 			temp = temp->next;
 		}
@@ -107,8 +133,10 @@ void Combat::enemy_kill(Room *room, Player *player){
 			if(player->y-1 == temp->enemy.y && player->x == temp->enemy.x){
 				temp->enemy.isDead = true;
 				room->currentRoom[player->y-1][player->x] = 0;
+				enemy_destroy(temp->enemy.x, temp->enemy.y);
 			}
 			temp = temp->next;
 		}
 	}
 }
+
