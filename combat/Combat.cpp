@@ -19,7 +19,7 @@ void Combat::enemy_obj_assign(Room *room){
 	for(int y = 0; y < 20; y++){
 		for(int x = 0; x < 20; x++){
 			if(room->currentRoom[y][x] == 3){
-				Enemy e(room, 3, 3, 0, x, y, 100);
+				Enemy e(room, 3, 1, false, x, y);
 				head_push(e);
 			}
 		}
@@ -87,53 +87,27 @@ void Combat::enemy_destroy(int x, int y) {
     }
 }
 
-void Combat::enemy_kill(Room *room, Player *player){
-	if(room->currentRoom[player->y][player->x-1] == 3){
-		p_enemyList temp = this->head;
-		while(temp != nullptr){
-			if(player->y == temp->enemy.y && player->x-1 == temp->enemy.x){
-				temp->enemy.isDead = true;
-				room->currentRoom[player->y][player->x-1] = 0;
-				enemy_destroy(temp->enemy.x, temp->enemy.y);
-			}
-			temp = temp->next;
+void Combat::enemy_kill(Room *room, Player *player) {
+	int x = player->x, y = player->y;
+
+	if(room->currentRoom[player->y][player->x-1] == 3) {x--;}
+	else if(room->currentRoom[player->y][player->x+1] == 3) {x++;}
+	else if(room->currentRoom[player->y-1][player->x] == 3) {y--;}
+	else if(room->currentRoom[player->y+1][player->x] == 3) {y++;}
+
+	p_enemyList temp = this->head;
+
+	while(temp != nullptr) {
+		if(x == temp->enemy.x && y == temp->enemy.y) {
+			temp->enemy.dmg_calc(player->dmg);
 		}
 
-	}
-	else if(room->currentRoom[player->y][player->x+1] == 3){
-		p_enemyList temp = this->head;
-		while(temp != nullptr){
-			if(player->y == temp->enemy.y && player->x+1 == temp->enemy.x){
-				temp->enemy.isDead = true;
-				room->currentRoom[player->y][player->x+1] = 0;
-				enemy_destroy(temp->enemy.x, temp->enemy.y);
-			}
-			temp = temp->next;
+		if(temp->enemy.isDead) {
+			player->score += 1;
+			room->currentRoom[y][x] = 0;
+			enemy_destroy(x, y);
 		}
 
-	}
-	else if(room->currentRoom[player->y+1][player->x] == 3){
-		p_enemyList temp = this->head;
-		while(temp != nullptr){
-			if(player->y+1 == temp->enemy.y && player->x == temp->enemy.x){
-				temp->enemy.isDead = true;
-				room->currentRoom[player->y+1][player->x] = 0;
-				enemy_destroy(temp->enemy.x, temp->enemy.y);
-			}
-			temp = temp->next;
-		}
-
-	}
-	else if(room->currentRoom[player->y-1][player->x] == 3){
-		p_enemyList temp = this->head;
-		while(temp != nullptr){
-			if(player->y-1 == temp->enemy.y && player->x == temp->enemy.x){
-				temp->enemy.isDead = true;
-				room->currentRoom[player->y-1][player->x] = 0;
-				enemy_destroy(temp->enemy.x, temp->enemy.y);
-			}
-			temp = temp->next;
-		}
+		temp = temp->next;
 	}
 }
-

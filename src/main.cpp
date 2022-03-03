@@ -23,7 +23,7 @@ void check_gate(Room *room, Pickups *pick, Combat *com){
 	}
 }
 
-void check_key(Player *player,Combat *combat, Room *room, char c){
+void check_key(Player *player, Combat *combat, Room *room, char c){
 	switch (c){
 	case 'a':
 		player->mv_left(room);
@@ -71,7 +71,7 @@ int main() {
 	activeRoom.currentRoom[1][0] = 2;
 	activeRoom.currentRoom[2][0] = 2;
 
-	Player player(&activeRoom, 10, 3, false, 2, 2);
+	Player player(&activeRoom, 10, 10, 1, false, 2, 2, 0);
 	int c = 0;
 
 	combatSystem.enemy_obj_assign(&activeRoom);
@@ -81,7 +81,9 @@ int main() {
 	while(c != 'q'){
 		player.render(&activeRoom);
 		mainWind.print_room(&activeRoom, &player, mapMemory.active->level_id);
+		
 		c = getch();
+		
 
 		// PORTA PER ANDARE AVANTI
 		if(player.check_door(&activeRoom, c) == 4){

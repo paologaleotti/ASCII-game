@@ -1,7 +1,8 @@
 #include "Player.hpp"
 
-Player::Player(Room *room, int hp, int dmg, bool isDead, int x, int y, int score){
-	this->hp = hp;
+Player::Player(Room *room, int maxHP, int hp, int dmg, bool isDead, int x, int y, int score){
+	this->maxHP = maxHP;
+	this->hp = this->maxHP;
 	this->dmg = dmg;
 	this->isDead = isDead;
 	this->x = x;
@@ -86,8 +87,10 @@ void Player::add_score(Room *room, int dir) {
 	}
 
 	if(room->currentRoom[y][x] == 7) {
-		this->score += 5;
+		this->score += 3;
+		this->hp += 1;
 	} else if(room->currentRoom[y][x] == 8) {
-		this->hp = this->score%10;
+		this->maxHP += this->score/10;
+		this->hp = this->maxHP;
 	}
 }

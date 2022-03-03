@@ -58,7 +58,7 @@ void MainWindow::print_room(Room *room, Player *player, int level_id){
 	attroff(COLOR_PAIR(UI_LEVEL));
 
 	attron(COLOR_PAIR(UI_HP));
-	printw(" HP: %d ", player->hp);
+	printw(" HP: %d/%d ", player->hp, player->maxHP);
 	attroff(COLOR_PAIR(UI_HP));	
 
 	attron(COLOR_PAIR(UI_SCORE));

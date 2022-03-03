@@ -1,6 +1,6 @@
 #include "Enemy.hpp"
 
-Enemy::Enemy(Room *room, int hp, int dmg, bool isDead, int x, int y, int score){
+Enemy::Enemy(Room *room, int hp, int dmg, bool isDead, int x, int y){
 	this->hp = hp;
 	this->dmg = dmg;
 	this->isDead = isDead;

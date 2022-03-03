@@ -34,5 +34,5 @@ Combat.o: combat/Combat.cpp combat/Combat.hpp
 Pickups.o: pickups/Pickups.cpp pickups/Pickups.hpp
 	g++ -c pickups/Pickups.cpp
 
-clean, clear:
+clean:
 	rm -f $(OBJS) $(OUT)
